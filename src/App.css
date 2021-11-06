@@ -1,6 +1,5 @@
 .App {
   font-family: 'Poppins',sans-serif;
-  text-align: center;
   
 }
 .moviepic {
@@ -45,8 +44,8 @@ input{
   margin-right: 10px;
 }
 
-.like-dislike {
-  margin: 10px;
+Button{
+ 
   font-size: 16px;
-  border-radius: 3px;
+  
 }

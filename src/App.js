@@ -2,10 +2,18 @@
 import React from 'react';
 import './App.css';
 
-import { Movie } from './Movie';
 import { useState } from "react";
+import { MovieList } from './MovieList';
+// Material components
+
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+
 export default function App() {
-  const movie_data = [
+ 
+  // using useState hook to add movie data dynamically 
+  const [movie_data , setMovie_data] =useState([
     {
       name: "Iron Man",
       pic:
@@ -56,38 +64,92 @@ export default function App() {
       summary:
         "Boxer Billy Hope hits rock-bottom after losing his family and falls into depression. His encounter with a former boxer gives him hope to stand up once again."
     }
-  ];
+  ]);
+
+  // variables for getting data from input
   const [name,setName] = useState("");
   const[pic,setPic] = useState("");
   const[summary,setSummary] = useState("");
   const[rating,setRating] = useState("");
   const[genre,setGenre]= useState("");
   const[runningTime,setRunningTime]=useState("");
+
+  // function to reset the movie form
+  const resetMovieForm = () =>{
+    setName("");
+    setPic("");
+    setRating("");
+    setSummary("");
+    setGenre("");
+    setRunningTime("");
+  }
+  // function to add the movie object to array 
+  const addMovie = ()=>{
+    const newMovie ={name,pic,summary,rating,genre,runningTime};
+    // copy of movies and then add the new movie to it
+    setMovie_data([...movie_data,newMovie]);
+    resetMovieForm();
+    
+  }
+  
   return (
     <div className="App">
       <div className="movie-form">
-        <input onChange={(event)=>setName(event.target.value)}placeholder="Enter a movie name" />
-        <input onChange={(event)=>setPic(event.target.value)}placeholder="Enter a poster url" />
-        <input onChange={(event)=>setRating(event.target.value)}placeholder="Enter movie rating" />
-        <input onChange={(event)=>setGenre(event.target.value)}placeholder="Enter a movie genre" />
-        <input onChange={(event)=>setRunningTime(event.target.value)}placeholder="Enter a movie running time" />
-        <input onChange={(event)=>setSummary(event.target.value)}placeholder="Enter a movie Summary" />
-        <button onClick={()=>{}}>Add Movie</button>
-      </div>
-      <div className="movie-details">
-        {movie_data.map((x) => (
-          <Movie
-            pic={x.pic}
-            name={x.name}
-            genre={x.genre}
-            summary={x.summary}
-            runningTime={x.runningTime}
-            rating={x.rating}
+        <Box
+          component="form"
+          sx={{
+            '& > :not(style)': { m: 1, width: '25ch' },
+          }}
+          noValidate
+          autoComplete="off"
+      >
+        
+      
+        <TextField 
+          id="outlined-basic" 
+          value={name}
+          onChange={(event)=>setName(event.target.value)}
+          placeholder="Enter a movie name" 
+        />
+        <TextField 
+          id="outlined-basic" 
+          value={pic}
+          onChange={(event)=>setPic(event.target.value)}
+          placeholder="Enter a poster url" 
+        />
+        <TextField 
+          id="outlined-basic" 
+          value={rating}
+          onChange={(event)=>setRating(event.target.value)}
+          placeholder="Enter movie rating" 
           />
-        ))}
+        <TextField 
+          id="outlined-basic" 
+          value={genre}
+          onChange={(event)=>setGenre(event.target.value)}
+          placeholder="Enter a movie genre" 
+        />
+        <TextField 
+          id="outlined-basic" 
+          value={runningTime}
+          onChange={(event)=>setRunningTime(event.target.value)}
+          placeholder="Enter a movie running time" 
+        />
+        <TextField 
+          id="outlined-basic" 
+          value ={summary}
+          onChange={(event)=>setSummary(event.target.value)}
+          placeholder="Enter a movie Summary" 
+        />
+
+        {/* Using button from Material  */}
+        <Button variant="contained" onClick={addMovie}>Add Movie</Button>
+      </Box>
       </div>
+      <MovieList movie_data={movie_data} />
     </div>
   );
 }
+
 
 
