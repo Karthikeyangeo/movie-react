@@ -4,7 +4,7 @@
 }
 .moviepic {
   height: 500px;
-  width: 340px;
+  width: 370px;
   object-fit: cover;
 }
 .movie-details{
@@ -23,7 +23,12 @@ input{
   font-size: 24px;
   font-weight: 600;
   margin-left: 5px;
-  
+}
+.rating-star{
+  font-size: medium;
+}
+.notFoundImage{
+  object-fit: cover;
 }
 .movie_name_rating{
   display: flex;
@@ -33,19 +38,33 @@ input{
 .movie-genre{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
   padding:0;
  
 }
 
 .movie-container {
   margin: 10px;
-  width: 340px;
-  margin-right: 10px;
+  width: 370px;
+  gap: 10px;
 }
 
 Button{
- 
   font-size: 16px;
-  
+}
+
+.movie-form{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+ul li{
+  list-style-type:none;
+  display: inline;
+  padding: 10px;
+}
+.card-footer{
+  display: flex;
+  justify-content: space-between;
 }

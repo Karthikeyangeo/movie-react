@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Button from '@mui/material/Button';
 import { spacing } from '@mui/system';
+import { IconButton } from '@mui/material';
+import Badge from '@mui/material/Badge';
 
 
 export function Counter() {
@@ -11,12 +13,16 @@ export function Counter() {
   return (
     <div>
       
-      <Button sx={{ m: 2 }}variant="outlined" className="like-dislike" onClick={incrementLike}>
-        👍{like}
-      </Button>
-      <Button variant="outlined" className="like-dislike" onClick={incrementDisLike}>
-        👎{disLike}
-      </Button>
+      <IconButton  className="like-dislike" onClick={incrementLike} color="primary" aria-label="delete">
+        <Badge badgeContent={like} color="primary">
+          👍
+        </Badge>
+      </IconButton>
+      <IconButton  className="like-dislike" onClick={incrementDisLike} color="error" aria-label="delete">
+      <Badge badgeContent={disLike} color="error">
+        👎
+      </Badge>
+      </IconButton>
     </div>
   );
 }

@@ -3,12 +3,18 @@ import React from 'react';
 import './App.css';
 
 import { useState } from "react";
-import { MovieList } from './MovieList';
+import { MovieList , MovieDetails} from './MovieList';
+import { AddColor } from './AddColor';
+
 // Material components
 
 import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+
+// Importing router dom 
+import { Switch, Route, Link } from "react-router-dom";
+import { NotFound } from './NotFound';
+
 
 export default function App() {
  
@@ -45,7 +51,7 @@ export default function App() {
       runningTime: "2h 49m"
     },
     {
-      name: "M.S. Dhoni: The Untold Story",
+      name: "M.S. Dhoni",
       pic:
         "https://upload.wikimedia.org/wikipedia/en/3/33/M.S._Dhoni_-_The_Untold_Story_poster.jpg",
       summary:
@@ -94,59 +100,96 @@ export default function App() {
   
   return (
     <div className="App">
-      <div className="movie-form">
-        <Box
-          component="form"
-          sx={{
-            '& > :not(style)': { m: 1, width: '25ch' },
-          }}
-          noValidate
-          autoComplete="off"
-      >
-        
+      <div className="lists">
+         {/* Change the url bar but dont refresh */}
+        <ul>
+        <li>
+            <Link to ="/">Home</Link>
+          </li>
+          <li>
+            <Link to ="/Movie List">Movies</Link>
+          </li>
+          <li>
+            <Link to="/color-game">Color Game</Link>
+          </li>
+          
+        </ul>
       
+      <hr />
+        <Switch>
+          {/* Each route is case, eg. - case '/about': */}
+        
+        <Route path="/Movie List">
+          {/* Matcht url display the below component */}
+          <div className="movie-form">
+        
         <TextField 
-          id="outlined-basic" 
+           
           value={name}
           onChange={(event)=>setName(event.target.value)}
-          placeholder="Enter a movie name" 
+          label="Movie name" 
+          variant="outlined"
         />
         <TextField 
-          id="outlined-basic" 
+          
           value={pic}
           onChange={(event)=>setPic(event.target.value)}
-          placeholder="Enter a poster url" 
+          label="Movie poster url" 
         />
         <TextField 
-          id="outlined-basic" 
+          
           value={rating}
           onChange={(event)=>setRating(event.target.value)}
-          placeholder="Enter movie rating" 
+          label="Movie rating" 
           />
         <TextField 
-          id="outlined-basic" 
+         
           value={genre}
           onChange={(event)=>setGenre(event.target.value)}
-          placeholder="Enter a movie genre" 
+          label="Movie genre" 
         />
         <TextField 
-          id="outlined-basic" 
+          
           value={runningTime}
           onChange={(event)=>setRunningTime(event.target.value)}
-          placeholder="Enter a movie running time" 
+          label="Movie running time" 
         />
         <TextField 
-          id="outlined-basic" 
+          s
           value ={summary}
           onChange={(event)=>setSummary(event.target.value)}
-          placeholder="Enter a movie Summary" 
+          label="Movie Summary" 
         />
 
         {/* Using button from Material  */}
         <Button variant="contained" onClick={addMovie}>Add Movie</Button>
-      </Box>
+       
       </div>
       <MovieList movie_data={movie_data} />
+        </Route>
+              
+        <Route path="/color-game">
+          <AddColor />
+        </Route>
+        <Route path="/movies/:id">
+          <MovieDetails 
+           movies={movie_data}
+          />
+        </Route>
+        <Route exact path ="/">
+           <h1>Welcome to the movie App</h1> 
+        </Route>
+
+        <Route path="**">
+          <NotFound />
+        </Route>
+
+        
+
+        
+        </Switch>
+      </div>
+      
     </div>
   );
 }
