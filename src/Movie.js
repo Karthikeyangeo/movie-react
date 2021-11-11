@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Counter } from "./Counter";
-import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -11,9 +10,9 @@ import InfoIcon from '@mui/icons-material/Info';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useHistory, useParams } from "react-router";
 import EditIcon from '@mui/icons-material/Edit';
-import { Icon } from "@mui/material";
 
-export function Movie({ name, pic, rating, genre, runningTime, summary,index }) {
+
+function Movie({ name, pic, rating, genre, runningTime, summary,index }) {
   const[show,setShow] = useState(true);
   const history = useHistory();
   const styles ={ display: show ? "block" : "none"};
@@ -48,7 +47,7 @@ export function Movie({ name, pic, rating, genre, runningTime, summary,index }) 
             <EditIcon />
           </IconButton>
 
-          <IconButton  color="error">
+          <IconButton  onClick={()=>{<DeleteMovie id={index}/>}} color="error">
             < DeleteIcon />
           </IconButton>
         </div>
@@ -57,7 +56,10 @@ export function Movie({ name, pic, rating, genre, runningTime, summary,index }) 
   );
 }
 
-// function Delete({id}){
-//   movie_data = movie_data.splice(id,1);
-//   console.log(movie_data);
-// }
+function DeleteMovie({id}){
+  console.log(id);
+  // movie_data = movie_data.splice(id,1);
+  // console.log(movie_data);
+}
+
+export{Movie,DeleteMovie};

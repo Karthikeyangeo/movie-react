@@ -103,8 +103,11 @@ export default function App() {
       <div className="lists">
          {/* Change the url bar but dont refresh */}
         <ul>
-        <li>
-            <Link to ="/">Home</Link>
+          <li>
+              <Link to ="/">Home</Link>
+          </li>
+          <li>
+            <Link to ="/Movie-form">Movie Form</Link>
           </li>
           <li>
             <Link to ="/Movie List">Movies</Link>
@@ -119,52 +122,12 @@ export default function App() {
         <Switch>
           {/* Each route is case, eg. - case '/about': */}
         
+        <Route path="/Movie-form">
+          {MovieForm()}
+        </Route>
         <Route path="/Movie List">
           {/* Matcht url display the below component */}
-          <div className="movie-form">
-        
-        <TextField 
-           
-          value={name}
-          onChange={(event)=>setName(event.target.value)}
-          label="Movie name" 
-          variant="outlined"
-        />
-        <TextField 
           
-          value={pic}
-          onChange={(event)=>setPic(event.target.value)}
-          label="Movie poster url" 
-        />
-        <TextField 
-          
-          value={rating}
-          onChange={(event)=>setRating(event.target.value)}
-          label="Movie rating" 
-          />
-        <TextField 
-         
-          value={genre}
-          onChange={(event)=>setGenre(event.target.value)}
-          label="Movie genre" 
-        />
-        <TextField 
-          
-          value={runningTime}
-          onChange={(event)=>setRunningTime(event.target.value)}
-          label="Movie running time" 
-        />
-        <TextField 
-          s
-          value ={summary}
-          onChange={(event)=>setSummary(event.target.value)}
-          label="Movie Summary" 
-        />
-
-        {/* Using button from Material  */}
-        <Button variant="contained" onClick={addMovie}>Add Movie</Button>
-       
-      </div>
       <MovieList movie_data={movie_data} />
         </Route>
               
@@ -184,14 +147,63 @@ export default function App() {
           <NotFound />
         </Route>
 
-        
-
-        
         </Switch>
       </div>
       
     </div>
   );
+
+  function MovieForm() {
+    const new_style = {width: '30%'};
+    return <div className="movie-form">
+    
+      <div className="rows">
+        <TextField
+
+          value={name}
+          onChange={(event) => setName(event.target.value)}
+          label="Movie name"
+          variant="outlined"
+          style = {new_style}
+          />
+        <TextField
+
+          value={pic}
+          onChange={(event) => setPic(event.target.value)}
+          label="Movie poster url" 
+          style = {new_style}/>
+        <TextField
+
+          value={rating}
+          onChange={(event) => setRating(event.target.value)}
+          label="Movie rating" 
+          style = {new_style}/>
+      </div>
+      <div className="rows">
+        <TextField
+
+          value={genre}
+          onChange={(event) => setGenre(event.target.value)}
+          label="Movie genre" 
+          style = {new_style}/>
+        <TextField
+
+          value={runningTime}
+          onChange={(event) => setRunningTime(event.target.value)}
+          label="Movie running time" 
+          style = {new_style}/>
+        <TextField
+          value={summary}
+          onChange={(event) => setSummary(event.target.value)}
+          label="Movie Summary" 
+          style = {new_style}/>
+      </div>
+
+      {/* Using button from Material  */}
+      <Button variant="contained" onClick={addMovie} style = {new_style} className="formButton">Add Movie</Button>
+
+    </div>;
+  }
 }
 
 

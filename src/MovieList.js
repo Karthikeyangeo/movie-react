@@ -1,5 +1,5 @@
 import React from 'react';
-import { Movie } from './Movie';
+import { Movie,DeleteMovie } from './Movie';
 import { useParams } from "react-router-dom";
 
 function MovieList(props) {
@@ -25,7 +25,7 @@ function MovieList(props) {
 function MovieDetails({movies}){
   const { id } = useParams();
   const new_movie = movies[id];
-  console.log(new_movie)
+  // console.log(new_movie)
   
   return <div className="movie-detail-container">
   <       h1 className="movie-name">{new_movie.name}</h1>
