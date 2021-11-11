@@ -57,6 +57,16 @@ Button{
   display: flex;
   flex-direction: column;
   gap: 12px;
+  margin-left:15%;
+  margin-top:35vh;
+}
+.rows{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.formButton{
+  margin-top: 10px;
 }
 
 ul li{
