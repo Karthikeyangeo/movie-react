@@ -5,6 +5,7 @@ import './App.css';
 import { useState } from "react";
 import { MovieList , MovieDetails} from './MovieList';
 import { AddColor } from './AddColor';
+import {EditMovie} from './EditMovie';
 
 // Material components
 
@@ -34,7 +35,7 @@ export default function App() {
             <Link to ="/Movie-form">Movie Form</Link>
           </li>
           <li>
-            <Link to ="/Movie-List">Movies</Link>
+            <Link to ="/MovieList">Movies</Link>
           </li>
           <li>
             <Link to="/color-game">Color Game</Link>
@@ -52,16 +53,21 @@ export default function App() {
             setMovie_data={setMovie_data}
           />
         </Route>
-
+        <Route path="/MovieList">
+          {/* Matcht url display the below component */}
+          <MovieList movie_data={movie_data} setMovie_data={setMovie_data}/>
+        </Route>
+        <Route path="/movies/edit/:id">
+          <EditMovie 
+          movie_data={movie_data}
+          setMovie_data={setMovie_data}/>
+        </Route>
         <Route path="/movies/:id">
           <MovieDetails 
            movies={movie_data}
           />
         </Route>
-        <Route path="/Movie-List">
-          {/* Matcht url display the below component */}
-          <MovieList movie_data={movie_data} setMovie_data={setMovie_data}/>
-        </Route>
+        
               
         <Route path="/color-game">
           <AddColor />

@@ -6,6 +6,7 @@ import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
+
 function MovieList({movie_data,setMovie_data}) {
 
   // to remove the movie when delete button is clicked
@@ -20,6 +21,8 @@ function MovieList({movie_data,setMovie_data}) {
     setMovie_data(remainingMovies);
   }
 
+  const history = useHistory();
+
   return (
     <section className="movie-details">
       {movie_data.map(({ name, pic, genre, summary, runningTime, rating,trailer},index) => (
@@ -33,13 +36,12 @@ function MovieList({movie_data,setMovie_data}) {
           index={index}
           trailer={trailer}
           deletebutton ={
-            <IconButton   color="error">
-              < DeleteIcon 
-              onClick={()=>removeMovie(index)} />
+            <IconButton   color="error" onClick={()=>removeMovie(index)}>
+              < DeleteIcon  />
             </IconButton>}
           editbutton = {
-            <IconButton >
-            <EditIcon onClick={()=> console.log("hi")} />
+            <IconButton onClick={()=> history.push(`/movies/edit/${index}`)}>
+            <EditIcon  />
           </IconButton>}
           />
       ))}
