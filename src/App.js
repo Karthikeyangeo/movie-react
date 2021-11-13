@@ -145,7 +145,9 @@ export default function App() {
           />
         </Route>
         <Route exact path ="/">
-           <h1>Welcome to the movie App</h1> 
+          <div className="home-page-content">
+            <h1>Welcome to the movie App</h1> 
+          </div>
         </Route>
 
         <Route path="**">
