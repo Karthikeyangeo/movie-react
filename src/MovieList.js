@@ -1,6 +1,8 @@
 import React from 'react';
 import { Movie,DeleteMovie } from './Movie';
-import { useParams } from "react-router-dom";
+import { useParams,useHistory } from "react-router-dom";
+import { Button } from '@mui/material';
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 function MovieList(props) {
   return (
@@ -25,6 +27,7 @@ function MovieList(props) {
 function MovieDetails({movies}){
   const { id } = useParams();
   const new_movie = movies[id];
+  const history = useHistory();
  console.log(movies);
   
   return <div className="movie-detail-container">
@@ -44,7 +47,15 @@ function MovieDetails({movies}){
             <h5 className="genre">🎬 Genre: {new_movie.genre}</h5>
             <h5>⏲: {new_movie.runningTime}</h5>
             <p  className="movie-specs">{new_movie.summary}</p>
+            
           </div>
+          <Button
+              onClick={()=>history.goBack()}
+              variant="contained"
+              startIcon={<KeyboardBackspaceIcon />}
+            >
+              Back
+            </Button>
           </div>
   
 }
