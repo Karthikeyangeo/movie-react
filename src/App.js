@@ -18,7 +18,7 @@ import { INITIAL_MOVIES } from './INITIAL_MOVIES';
 export default function App() {
  
   // using useState hook to add movie data dynamically 
-   const [movie_data , setMovie_data] =useState(INITIAL_MOVIES);
+    const [movie_data , setMovie_data] =useState(INITIAL_MOVIES);
 
   
   
@@ -34,7 +34,7 @@ export default function App() {
             <Link to ="/Movie-form">Movie Form</Link>
           </li>
           <li>
-            <Link to ="/Movie List">Movies</Link>
+            <Link to ="/Movie-List">Movies</Link>
           </li>
           <li>
             <Link to="/color-game">Color Game</Link>
@@ -52,20 +52,21 @@ export default function App() {
             setMovie_data={setMovie_data}
           />
         </Route>
-        <Route path="/Movie List">
-          {/* Matcht url display the below component */}
-          
-      <MovieList movie_data={movie_data} />
-        </Route>
-              
-        <Route path="/color-game">
-          <AddColor />
-        </Route>
+
         <Route path="/movies/:id">
           <MovieDetails 
            movies={movie_data}
           />
         </Route>
+        <Route path="/Movie-List">
+          {/* Matcht url display the below component */}
+          <MovieList movie_data={movie_data} setMovie_data={setMovie_data}/>
+        </Route>
+              
+        <Route path="/color-game">
+          <AddColor />
+        </Route>
+        
         <Route exact path ="/">
           <div className="home-page-content">
             <h1>Welcome to the movie App</h1> 

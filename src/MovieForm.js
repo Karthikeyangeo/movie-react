@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useState } from "react";
+import { useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
@@ -13,7 +14,8 @@ export function MovieForm({ movie_data, setMovie_data }) {
   const [rating, setRating] = useState("");
   const [genre, setGenre] = useState("");
   const [runningTime, setRunningTime] = useState("");
-
+  const [trailer,setTrailer] = useState("");
+  const history = useHistory();
   // function to reset the movie form
   const resetMovieForm = () => {
     setName("");
@@ -22,13 +24,15 @@ export function MovieForm({ movie_data, setMovie_data }) {
     setSummary("");
     setGenre("");
     setRunningTime("");
+    setTrailer("");
   };
   // function to add the movie object to array 
   const addMovie = () => {
-    const newMovie = { name, pic, summary, rating, genre, runningTime };
+    const newMovie = { name, pic, summary, rating, genre, runningTime ,trailer};
     // copy of movies and then add the new movie to it
     setMovie_data([...movie_data, newMovie]);
     resetMovieForm();
+    history.push("/Movie List");
 
   };
 
@@ -69,6 +73,13 @@ export function MovieForm({ movie_data, setMovie_data }) {
       value={runningTime}
       onChange={(event) => setRunningTime(event.target.value)}
       label="Movie running time"
+      style={new_style} />
+      <TextField
+
+      value={runningTime}
+      onChange={(event) => setTrailer(event.target.value)}
+      label="Movie trailer"
+      placeholder="Enter the embeded code"
       style={new_style} />
     <TextField
       value={summary}

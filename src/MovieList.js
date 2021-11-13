@@ -1,13 +1,28 @@
 import React from 'react';
-import { Movie,DeleteMovie } from './Movie';
+import { Movie } from './Movie';
 import { useParams,useHistory } from "react-router-dom";
-import { Button } from '@mui/material';
+import { Button ,IconButton} from '@mui/material';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
-function MovieList(props) {
+function MovieList({movie_data,setMovie_data}) {
+
+  // to remove the movie when delete button is clicked
+  const removeMovie =(index)=>{
+    console.log(index);
+    const removeIndex = index;
+
+    // filter fn returns new array without selected movie
+    const remainingMovies = movie_data.filter(
+      (mv,id)=> id !== removeIndex
+    );
+    setMovie_data(remainingMovies);
+  }
+
   return (
     <section className="movie-details">
-      {props.movie_data.map(({ name, pic, genre, summary, runningTime, rating },index) => (
+      {movie_data.map(({ name, pic, genre, summary, runningTime, rating,trailer},index) => (
         <Movie
           pic={pic}
           name={name}
@@ -16,6 +31,16 @@ function MovieList(props) {
           runningTime={runningTime}
           rating={rating} 
           index={index}
+          trailer={trailer}
+          deletebutton ={
+            <IconButton   color="error">
+              < DeleteIcon 
+              onClick={()=>removeMovie(index)} />
+            </IconButton>}
+          editbutton = {
+            <IconButton >
+            <EditIcon onClick={()=> console.log("hi")} />
+          </IconButton>}
           />
       ))}
     </section>
@@ -23,6 +48,7 @@ function MovieList(props) {
 }
 
 
+          
 // function to show the full details of movie based on array index(id ) value
 function MovieDetails({movies}){
   const { id } = useParams();

@@ -7,13 +7,11 @@ import IconButton from '@mui/material/IconButton';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import InfoIcon from '@mui/icons-material/Info';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { useHistory, useParams } from "react-router";
-import EditIcon from '@mui/icons-material/Edit';
-import {movie_data,setMovie_data} from "./App";
+import { useHistory } from "react-router";
 
 
-function Movie({ name, pic, rating, genre, runningTime, summary,index }) {
+
+function Movie({ name, pic, rating, genre, runningTime, summary,index ,editbutton,deletebutton}) {
   const[show,setShow] = useState(true);
   const history = useHistory();
   const styles ={ display: show ? "block" : "none"};
@@ -43,26 +41,14 @@ function Movie({ name, pic, rating, genre, runningTime, summary,index }) {
         <CardActions className="card-footer">
         <Counter />
         <div className="edit-tools">
-         
-          <IconButton >
-            <EditIcon />
-          </IconButton>
-
-          <IconButton  onClick={()=>{
-           console.log()}} 
-            
-            color="error">
-            < DeleteIcon />
-          </IconButton>
+         {editbutton}
+         {deletebutton}
         </div>
       </CardActions>
     </Card >
   );
 }
 
-// function DeleteMovie(id){
-//   console.log(id);
-  
-// }
+
 
 export{Movie};
