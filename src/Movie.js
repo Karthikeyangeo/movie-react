@@ -10,6 +10,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useHistory, useParams } from "react-router";
 import EditIcon from '@mui/icons-material/Edit';
+import {movie_data,setMovie_data} from "./App";
 
 
 function Movie({ name, pic, rating, genre, runningTime, summary,index }) {
@@ -47,7 +48,10 @@ function Movie({ name, pic, rating, genre, runningTime, summary,index }) {
             <EditIcon />
           </IconButton>
 
-          <IconButton  onClick={()=>{<DeleteMovie id={index}/>}} color="error">
+          <IconButton  onClick={()=>{
+           console.log()}} 
+            
+            color="error">
             < DeleteIcon />
           </IconButton>
         </div>
@@ -56,10 +60,9 @@ function Movie({ name, pic, rating, genre, runningTime, summary,index }) {
   );
 }
 
-function DeleteMovie({id}){
-  console.log(id);
-  // movie_data = movie_data.splice(id,1);
-  // console.log(movie_data);
-}
+// function DeleteMovie(id){
+//   console.log(id);
+  
+// }
 
-export{Movie,DeleteMovie};
+export{Movie};

@@ -19,7 +19,7 @@ import { NotFound } from './NotFound';
 export default function App() {
  
   // using useState hook to add movie data dynamically 
-  const [movie_data , setMovie_data] =useState([
+   const [movie_data , setMovie_data] =useState([
     {
       name: "Iron Man",
       pic:
@@ -28,7 +28,8 @@ export default function App() {
         "When Tony Stark, an industrialist, is captured, he constructs a high-tech armoured suit to escape. Once he manages to escape, he decides to use his suit to fight against evil forces to save the world.",
       rating: 7.9,
       genre: "Action/Adventure/Sci-fi",
-      runningTime: "2h 6m"
+      runningTime: "2h 6m",
+      trailer:"https://www.youtube.com/embed/8ugaeA-nMTc" 
     },
     {
       name: "Avengers Endgame",
@@ -38,7 +39,8 @@ export default function App() {
         "After Thanos, an intergalactic warlord, disintegrates half of the universe, the Avengers must reunite and assemble again to reinvigorate their trounced allies and restore balance.",
       rating: 9.4,
       genre: "Action/Adventure/Sci-fi",
-      runningTime: "3h 2m"
+      runningTime: "3h 2m",
+      trailer:"https://www.youtube.com/embed/TcMBFSGVi1c"
     },
     {
       name: "Interstellar",
@@ -48,7 +50,8 @@ export default function App() {
         "When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans.",
       rating: 8.6,
       genre: "Sci-fi/Adventure",
-      runningTime: "2h 49m"
+      runningTime: "2h 49m",
+      trailer:"https://www.youtube.com/embed/zSWdZVtXT7E"
     },
     {
       name: "M.S. Dhoni",
@@ -58,7 +61,8 @@ export default function App() {
         "M S Dhoni, a boy from Ranchi, aspires to play cricket for India. Though he initially tries to please his father by working for the Indian Railways, he ultimately decides to chase his dreams.",
       rating: 7.9,
       genre: "Sport/Drama/Biopic",
-      runningTime: "3h 40m"
+      runningTime: "3h 40m",
+      trailer:"https://www.youtube.com/embed/G2zb_nbrnyU"
     },
     {
       name: "Southpaw",
@@ -68,7 +72,8 @@ export default function App() {
       genre: "Drama/Sport",
       runningTime: "2h 4m",
       summary:
-        "Boxer Billy Hope hits rock-bottom after losing his family and falls into depression. His encounter with a former boxer gives him hope to stand up once again."
+        "Boxer Billy Hope hits rock-bottom after losing his family and falls into depression. His encounter with a former boxer gives him hope to stand up once again.",
+      trailer:"https://youtube.com/embed/Mh2ebPxhoLs"
     }
   ]);
 
@@ -157,7 +162,7 @@ export default function App() {
     const new_style = {width: '30%'};
     return <div className="movie-form">
     
-      <div className="rows">
+      
         <TextField
 
           value={name}
@@ -178,8 +183,8 @@ export default function App() {
           onChange={(event) => setRating(event.target.value)}
           label="Movie rating" 
           style = {new_style}/>
-      </div>
-      <div className="rows">
+     
+    
         <TextField
 
           value={genre}
@@ -197,7 +202,7 @@ export default function App() {
           onChange={(event) => setSummary(event.target.value)}
           label="Movie Summary" 
           style = {new_style}/>
-      </div>
+      
 
       {/* Using button from Material  */}
       <Button variant="contained" onClick={addMovie} style = {new_style} className="formButton">Add Movie</Button>
