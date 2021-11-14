@@ -8,6 +8,7 @@
   object-fit: cover;
 }
 .movie-details{
+  margin-top: 15px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -81,4 +82,13 @@ ul li{
 
 .movie-detail-container{
   padding: 15px ;
+}
+.colorbox{
+  margin-top: 15vh;
+  margin-left: 40%;
+}
+
+.inputBox{
+  display:flex;
+  gap:15px;
 }

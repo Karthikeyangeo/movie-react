@@ -1,5 +1,7 @@
 import React from 'react';
 import { useState } from "react";
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 
 export function AddColor() {
@@ -8,12 +10,17 @@ export function AddColor() {
   const [colors, setColors] = useState(["pink", "orange", "crimson", "violet"]);
 
   return (
-    <div>
-      <input
-        style={styles}
-        onChange={(event) => setColor(event.target.value)}
-        placeholder="enter a color" />
-      <button onClick={() => setColors([...colors, color])}>Add Color</button>
+    <div className="colorbox">
+      <div className="inputBox">
+        <TextField
+          style={styles}
+          className = "colorInput"
+          onChange={(event) => setColor(event.target.value)}
+          label="Enter a color"
+          variant="outlined"
+          />
+        <Button variant="contained"  onClick={() => setColors([...colors, color])}>Add Color</Button>
+      </div>
       {colors.map((clr) => (
         <ColorBox clr={clr} />
       ))}

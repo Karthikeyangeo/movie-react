@@ -3,11 +3,18 @@ import React from 'react';
 import './App.css';
 
 import { useState } from "react";
+import { useHistory } from 'react-router-dom';
 import { MovieList , MovieDetails} from './MovieList';
 import { AddColor } from './AddColor';
 import {EditMovie} from './EditMovie';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
 
-// Material components
 
 
 // Importing router dom 
@@ -21,29 +28,57 @@ export default function App() {
   // using useState hook to add movie data dynamically 
     const [movie_data , setMovie_data] =useState(INITIAL_MOVIES);
 
-  
+    const history = useHistory();
   
   return (
     <div className="App">
-      <div className="lists">
-         {/* Change the url bar but dont refresh */}
-        <ul>
-          <li>
-              <Link to ="/">Home</Link>
-          </li>
-          <li>
-            <Link to ="/Movie-form">Movie Form</Link>
-          </li>
-          <li>
-            <Link to ="/MovieList">Movies</Link>
-          </li>
-          <li>
-            <Link to="/color-game">Color Game</Link>
-          </li>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            variant="text"
+            size="small"
+            color="inherit"
+            aria-label="Home"
+            sx={{ mr: 2 }}
+            onClick = {()=> history.push('/')}
+          >
+            Home
+          </IconButton>
+
+          <IconButton
+            variant="text"
+            size="small"
+            color="inherit"
+            aria-label="Movie Form"
+            sx={{ mr: 2 }}
+            onClick = {()=> history.push('/Movie-form')}
+          >
+            Movie Form
+          </IconButton>
+          <IconButton
+            variant="text"
+            size="small"
+            color="inherit"
+            aria-label="Movies"
+            sx={{ mr: 2 }}
+            onClick = {()=> history.push('/MovieList')}
+          >
+            Movies
+          </IconButton>
+          <IconButton
+            variant="text"
+            size="small"
+            color="inherit"
+            aria-label="Color Game"
+            sx={{ mr: 2 }}
+            onClick = {()=> history.push('/color-game')}
+          >
+            Color Game
+          </IconButton>
           
-        </ul>
-      
-      <hr />
+        </Toolbar>
+      </AppBar>
+
         <Switch>
           {/* Each route is case, eg. - case '/about': */}
         
@@ -84,7 +119,7 @@ export default function App() {
         </Route>
 
         </Switch>
-      </div>
+     
       
     </div>
   );
