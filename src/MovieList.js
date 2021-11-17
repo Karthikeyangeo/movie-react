@@ -16,8 +16,7 @@ function MovieList({movie_data,setMovie_data}) {
 
     // filter fn returns new array without selected movie
     const remainingMovies = movie_data.filter(
-      (mv,id)=> id !== removeIndex
-    );
+      (mv,id)=> id !== removeIndex);
     setMovie_data(remainingMovies);
   }
 

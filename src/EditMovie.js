@@ -7,7 +7,9 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
 export function EditMovie({ movie_data, setMovie_data }) {
+  // getting id from clicked element
   const {id}= useParams();
+  // using ID the object is selected
   const selectedMovie = movie_data[id];
   console.log('selectedmovie',selectedMovie);
   const [name, setName] = useState(selectedMovie.name);
