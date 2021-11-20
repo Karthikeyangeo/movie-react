@@ -2,7 +2,7 @@
 import React from 'react';
 import './App.css';
 
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useHistory } from 'react-router-dom';
 import { MovieList , MovieDetails} from './MovieList';
 import { AddColor } from './AddColor';
@@ -23,7 +23,17 @@ import { INITIAL_MOVIES } from './INITIAL_MOVIES';
 export default function App() {
  
   // using useState hook to add movie data dynamically 
-    const [movie_data , setMovie_data] =useState(INITIAL_MOVIES);
+    const [movie_data , setMovie_data] =useState([]);
+   
+    useEffect(()=> {
+      fetch(`https://61988db0164fa60017c230f1.mockapi.io/movies`,{
+        method : "GET",
+      })  //returns a promise object
+      .then((data) => data.json())
+      .then((mvs)=>setMovie_data(mvs));
+    },[]  );
+  
+
 
     const history = useHistory();
   

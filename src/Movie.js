@@ -11,7 +11,7 @@ import { useHistory } from "react-router";
 
 
 
-function Movie({ name, pic, rating, genre, runningTime, summary,index ,trailer,editbutton,deletebutton}) {
+function Movie({ name, pic, rating, genre, runningTime, summary,id ,trailer,editbutton,deletebutton}) {
   const[show,setShow] = useState(true);
   const history = useHistory();
   const styles ={ display: show ? "block" : "none"};
@@ -26,7 +26,7 @@ function Movie({ name, pic, rating, genre, runningTime, summary,index ,trailer,e
         </div>
         <div className="movie-genre">
           <p className="genre">🎬:{genre}</p>
-          <IconButton onClick={()=>history.push(`/movies/${index}`)} color="primary" >
+          <IconButton onClick={()=>history.push(`/movies/${id}`)} color="primary" >
           <InfoIcon />
           </IconButton>
           {/* Conditional rendering */}

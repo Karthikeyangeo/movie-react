@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Movie } from './Movie';
 import { useParams,useHistory } from "react-router-dom";
 import { Button ,IconButton} from '@mui/material';
@@ -24,7 +24,7 @@ function MovieList({movie_data,setMovie_data}) {
 
   return (
     <section className="movie-details">
-      {movie_data.map(({ name, pic, genre, summary, runningTime, rating,trailer},index) => (
+      {movie_data.map(({ name, pic, genre, summary, runningTime, rating,trailer,id},index) => (
         <Movie
           pic={pic}
           name={name}
@@ -32,7 +32,7 @@ function MovieList({movie_data,setMovie_data}) {
           summary={summary}
           runningTime={runningTime}
           rating={rating} 
-          index={index}
+          id={id}
           trailer={trailer}
           deletebutton ={
             <IconButton   color="error" onClick={()=>removeMovie(index)}>
@@ -51,11 +51,20 @@ function MovieList({movie_data,setMovie_data}) {
 
           
 // function to show the full details of movie based on array index(id ) value
-function MovieDetails({movies}){
+function MovieDetails(){
   const { id } = useParams();
-  const new_movie = movies[id];
   const history = useHistory();
- console.log(movies);
+   // const new_movie = movies[id];
+
+  const [new_movie,setNewMovie] = useState({});
+  useEffect(()=> {
+    fetch(`https://61988db0164fa60017c230f1.mockapi.io/movies/${id}`,{
+      method : "GET",
+    })  //returns a promise object
+    .then((data) => data.json())
+    .then((mv)=>setNewMovie(mv));
+  },[]  );
+
   
   return <div className="movie-detail-container">
           <iframe 
