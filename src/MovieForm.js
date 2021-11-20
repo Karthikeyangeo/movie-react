@@ -29,10 +29,18 @@ export function MovieForm({ movie_data, setMovie_data }) {
   // function to add the movie object to array 
   const addMovie = () => {
     const newMovie = { name, pic, summary, rating, genre, runningTime ,trailer};
-    // copy of movies and then add the new movie to it
-    setMovie_data([...movie_data, newMovie]);
-    resetMovieForm();
-    history.push("/Movie List");
+     // copy of movies and then add the new movie to it
+    // setMovie_data([...movie_data, newMovie]);
+    // resetMovieForm();
+    // history.push("/Movie List");
+
+    fetch(`https://61988db0164fa60017c230f1.mockapi.io/movies`,{
+      method : "POST",
+      body : JSON.stringify(newMovie),
+      headers :{'content-type':'application/json'}
+    })  //returns a promise object
+      .then(()=>history.push("/MovieList"))
+    
 
   };
 
@@ -76,7 +84,7 @@ export function MovieForm({ movie_data, setMovie_data }) {
       style={new_style} />
       <TextField
 
-      value={runningTime}
+      value={trailer}
       onChange={(event) => setTrailer(event.target.value)}
       label="Movie trailer"
       placeholder="Enter the embeded code"

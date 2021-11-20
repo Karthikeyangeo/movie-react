@@ -1,8 +1,8 @@
 
-import React from 'react';
+import React ,{useState} from 'react';
 import './App.css';
 
-import { useState,useEffect } from "react";
+
 import { useHistory } from 'react-router-dom';
 import { MovieList , MovieDetails} from './MovieList';
 import { AddColor } from './AddColor';
@@ -10,34 +10,33 @@ import {EditMovie} from './EditMovie';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-
-
-
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import Paper from '@mui/material/Paper';
 
 // Importing router dom 
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import { NotFound } from './NotFound';
 import { MovieForm } from './MovieForm';
-import { INITIAL_MOVIES } from './INITIAL_MOVIES';
+
+
+
 
 export default function App() {
  
-  // using useState hook to add movie data dynamically 
-    const [movie_data , setMovie_data] =useState([]);
-   
-    useEffect(()=> {
-      fetch(`https://61988db0164fa60017c230f1.mockapi.io/movies`,{
-        method : "GET",
-      })  //returns a promise object
-      .then((data) => data.json())
-      .then((mvs)=>setMovie_data(mvs));
-    },[]  );
-  
-
-
+    const[ appMode,setAppMode ] = useState("dark");
     const history = useHistory();
-  
+    const theme = createTheme({
+          palette: {
+            mode: appMode,
+          }
+        });
+    const paperStyles = { borderRadius : 0 , minHeight: "100vh"}
   return (
+
+    <ThemeProvider theme={theme}>
+    <Paper elevation={3} style={paperStyles}>
     <div className="App">
       <AppBar position="static">
         <Toolbar>
@@ -82,6 +81,18 @@ export default function App() {
           >
             Color Game
           </IconButton>
+
+          <IconButton
+            variant="text"
+            size="small"
+            color="inherit"
+            aria-label="Mode"
+            sx={{ mr: 2 }}      
+            style={{marginLeft:"auto"}}    
+            onClick = { ()=> setAppMode(appMode === 'dark' ? 'light':'dark')}
+          >
+            {appMode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />} Mode
+          </IconButton>
           
         </Toolbar>
       </AppBar>
@@ -90,24 +101,17 @@ export default function App() {
           {/* Each route is case, eg. - case '/about': */}
         
         <Route path="/Movie-form">
-          < MovieForm 
-            movie_data={movie_data}
-            setMovie_data={setMovie_data}
-          />
+          < MovieForm />
         </Route>
         <Route path="/MovieList">
           {/* Matcht url display the below component */}
-          <MovieList movie_data={movie_data} setMovie_data={setMovie_data}/>
+          <MovieList />
         </Route>
         <Route path="/movies/edit/:id">
-          <EditMovie 
-          movie_data={movie_data}
-          setMovie_data={setMovie_data}/>
+          <EditMovie />
         </Route>
         <Route path="/movies/:id">
-          <MovieDetails 
-           movies={movie_data}
-          />
+          <MovieDetails />
         </Route>
         
               
@@ -129,6 +133,8 @@ export default function App() {
      
       
     </div>
+    </Paper>
+    </ThemeProvider>
   );
 
   

@@ -16,7 +16,7 @@ function Movie({ name, pic, rating, genre, runningTime, summary,id ,trailer,edit
   const history = useHistory();
   const styles ={ display: show ? "block" : "none"};
 
-  return (
+  return ( 
     <Card  className="movie-container">
         <img className="moviepic" alt={name} src={pic} />
       <CardContent>

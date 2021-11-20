@@ -1,16 +1,25 @@
 // Function to display the form and to collect the data
 
 import React from 'react';
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useHistory ,useParams} from 'react-router-dom';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
-export function EditMovie({ movie_data, setMovie_data }) {
+export function EditMovie() {
   // getting id from clicked element
   const {id}= useParams();
   // using ID the object is selected
-  const selectedMovie = movie_data[id];
+  const [selectedMovie,setSelectedMovie] = useState({});
+  useEffect (()=> {
+      fetch(`https://61988db0164fa60017c230f1.mockapi.io/movies/${id}`,{
+      method:"GET",
+    })
+    .then((data)=> data.json())
+    .then((editmv) => setSelectedMovie(editmv))
+  },[id]);
+
+
   console.log('selectedmovie',selectedMovie);
   const [name, setName] = useState(selectedMovie.name);
   const [pic, setPic] = useState(selectedMovie.pic);
@@ -37,12 +46,14 @@ export function EditMovie({ movie_data, setMovie_data }) {
   // function to add the movie object to array 
   const editMovie = () => {
     const updatedMovie = { name, pic, summary, rating, genre, runningTime ,trailer};
+    
+    
     // copy of movies and then add the new movie to it
-    const copyMovies = [...movie_data];
-    copyMovies[id] = updatedMovie;
-    setMovie_data(copyMovies);
-    resetMovieForm();
-    history.push("/MovieList");
+    // const copyMovies = [...movie_data];
+    // copyMovies[id] = updatedMovie;
+    // setMovie_data(copyMovies);
+    // resetMovieForm();
+    // history.push("/MovieList");
 
   };
 

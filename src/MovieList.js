@@ -7,17 +7,37 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 
-function MovieList({movie_data,setMovie_data}) {
+function MovieList() {
+
+  // using useState hook to add movie data dynamically 
+  const [movie_data , setMovie_data] =useState([]);
+   
+  // function to display the movies from API
+  const getMovies =()=> {
+    fetch(`https://61988db0164fa60017c230f1.mockapi.io/movies`,{
+      method : "GET",
+    })  //returns a promise object
+    .then((data) => data.json())
+    .then((mvs)=>setMovie_data(mvs));
+  }
+
+  //getting data from API using useEffect function 
+  useEffect(getMovies,[]);
+
 
   // to remove the movie when delete button is clicked
-  const removeMovie =(index)=>{
-    console.log(index);
-    const removeIndex = index;
+  const removeMovie =(id)=>{
+    fetch(`https://61988db0164fa60017c230f1.mockapi.io/movies/${id}`,{
+      method : "Delete",
+    }).then(()=> getMovies());
 
-    // filter fn returns new array without selected movie
-    const remainingMovies = movie_data.filter(
-      (mv,id)=> id !== removeIndex);
-    setMovie_data(remainingMovies);
+    // console.log(index);
+    // const removeIndex = index;
+
+    // // filter fn returns new array without selected movie
+    // const remainingMovies = movie_data.filter(
+    //   (mv,id)=> id !== removeIndex);
+    // setMovie_data(remainingMovies);
   }
 
   const history = useHistory();
@@ -35,11 +55,11 @@ function MovieList({movie_data,setMovie_data}) {
           id={id}
           trailer={trailer}
           deletebutton ={
-            <IconButton   color="error" onClick={()=>removeMovie(index)}>
+            <IconButton   color="error" onClick={()=>removeMovie(id)}>
               < DeleteIcon  />
             </IconButton>}
           editbutton = {
-            <IconButton onClick={()=> history.push(`/movies/edit/${index}`)}>
+            <IconButton onClick={()=> history.push(`/movies/edit/${id}`)}>
             <EditIcon  />
           </IconButton>}
           />
@@ -63,8 +83,8 @@ function MovieDetails(){
     })  //returns a promise object
     .then((data) => data.json())
     .then((mv)=>setNewMovie(mv));
-  },[]  );
-
+  },[id]);
+ 
   
   return <div className="movie-detail-container">
           <iframe 

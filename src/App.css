@@ -12,6 +12,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  
 }
 input{
   margin: 5px;
@@ -48,6 +49,7 @@ input{
   margin: 10px;
   width: 370px;
   gap: 10px;
+  height: min-content;
 }
 
 Button{
@@ -86,6 +88,7 @@ ul li{
 .colorbox{
   margin-top: 15vh;
   margin-left: 40%;
+ 
 }
 
 .inputBox{
