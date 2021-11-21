@@ -106,7 +106,7 @@ ul li{
   text-align: center;
 }
 
-.basic-form .MuiFormHelperText-root {
+ .MuiFormHelperText-root {
   color: rgba(255,0,0) !important;
 }
 
