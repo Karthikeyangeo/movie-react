@@ -10,7 +10,7 @@ export function EditMovie() {
   // getting id from clicked element
   const {id}= useParams();
   // using ID the object is selected
-  const [selectedMovie,setSelectedMovie] = useState({});
+  const [selectedMovie,setSelectedMovie] = useState(null);
   useEffect (()=> {
     fetch(`https://61988db0164fa60017c230f1.mockapi.io/movies/${id}`,{
       method:"GET",
@@ -21,6 +21,11 @@ export function EditMovie() {
 
 
   console.log('selectedmovie',selectedMovie);
+
+  return selectedMovie ?<UpdatedMovie selectedMovie={selectedMovie} />: "";
+}
+
+function UpdatedMovie({selectedMovie}){
   const [name, setName] = useState(selectedMovie.name);
   const [pic, setPic] = useState(selectedMovie.pic);
   const [summary, setSummary] = useState(selectedMovie.summary);
@@ -45,22 +50,15 @@ export function EditMovie() {
   };
   // function to add the movie object to array 
   const editMovie = () => {
-    const updatedMovie = { name, pic, summary, rating, genre, runningTime ,trailer};
+    const updMovie = { name, pic, summary, rating, genre, runningTime ,trailer};
     
-    // fetch(`https://61988db0164fa60017c230f1.mockapi.io/movies`,{
-    //   method : "PUT",
-    //   body : JSON.stringify(updatedMovie),
-    //   headers :{'content-type':'application/json'}
-    // })  //returns a promise object
-    //   .then(()=>history.push("/MovieList"))
+    fetch(`https://61988db0164fa60017c230f1.mockapi.io/movies/${selectedMovie.id}`,{
+      method : "PUT",
+      body : JSON.stringify(updMovie),
+      headers :{'content-type':'application/json'}
+    })  //returns a promise object
+      .then(()=>history.push("/MovieList"))
     
-    // copy of movies and then add the new movie to it
-    // const copyMovies = [...movie_data];
-    // copyMovies[id] = updatedMovie;
-    // setMovie_data(copyMovies);
-    // resetMovieForm();
-    // history.push("/MovieList");
-
   };
 
 
@@ -119,5 +117,5 @@ export function EditMovie() {
     {/* Using button from Material  */}
     <Button variant="contained" color="success" onClick={editMovie} style={new_style} className="formButton">Save Movie</Button>
 
-  </div>;
+  </div>
 }
