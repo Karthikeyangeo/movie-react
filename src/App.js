@@ -19,6 +19,7 @@ import Paper from '@mui/material/Paper';
 import { Switch, Route } from "react-router-dom";
 import { NotFound } from './NotFound';
 import { MovieForm } from './MovieForm';
+import { BasicForm } from './BasicForm';
 
 
 
@@ -81,7 +82,17 @@ export default function App() {
           >
             Color Game
           </IconButton>
-
+          
+          <IconButton
+            variant="text"
+            size="small"
+            color="inherit"
+            aria-label="Basic Form"
+            sx={{ mr: 2 }}
+            onClick = {()=> history.push('/basic-form')}
+          >
+            Basic Form
+          </IconButton>
           <IconButton
             variant="text"
             size="small"
@@ -109,6 +120,9 @@ export default function App() {
         </Route>
         <Route path="/movies/edit/:id">
           <EditMovie />
+        </Route>
+        <Route path="/basic-form">
+          <BasicForm />
         </Route>
         <Route path="/movies/:id">
           <MovieDetails />
