@@ -12,12 +12,12 @@ export function EditMovie() {
   // using ID the object is selected
   const [selectedMovie,setSelectedMovie] = useState({});
   useEffect (()=> {
-      fetch(`https://61988db0164fa60017c230f1.mockapi.io/movies/${id}`,{
+    fetch(`https://61988db0164fa60017c230f1.mockapi.io/movies/${id}`,{
       method:"GET",
     })
     .then((data)=> data.json())
     .then((editmv) => setSelectedMovie(editmv))
-  },[id]);
+  },[]);
 
 
   console.log('selectedmovie',selectedMovie);
@@ -47,6 +47,12 @@ export function EditMovie() {
   const editMovie = () => {
     const updatedMovie = { name, pic, summary, rating, genre, runningTime ,trailer};
     
+    // fetch(`https://61988db0164fa60017c230f1.mockapi.io/movies`,{
+    //   method : "PUT",
+    //   body : JSON.stringify(updatedMovie),
+    //   headers :{'content-type':'application/json'}
+    // })  //returns a promise object
+    //   .then(()=>history.push("/MovieList"))
     
     // copy of movies and then add the new movie to it
     // const copyMovies = [...movie_data];
