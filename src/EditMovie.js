@@ -50,6 +50,11 @@ function UpdatedMovie({selectedMovie}){
       trailer:selectedMovie.trailer
     },
     validationSchema:formValidationSchema,
+    onSubmit:(updMovie)=>{
+      console.log("OnSubmit updated movie",updMovie);
+      editMovie(updMovie)
+      
+    }
   })
   // const [name, setName] = useState(selectedMovie.name);
   // const [pic, setPic] = useState(selectedMovie.pic);
@@ -74,8 +79,8 @@ function UpdatedMovie({selectedMovie}){
   //   setTrailer("");
   // };
   // function to add the movie object to array 
-  const editMovie = () => {
-    const updMovie = { name : values.name, pic:values.pic, summary:values.summary, rating:values.rating, genre:values.genre, runningTime:values.runningTime ,trailer:values.trailer};
+  const editMovie = (updMovie) => {
+    // const updMovie = { name : values.name, pic:values.pic, summary:values.summary, rating:values.rating, genre:values.genre, runningTime:values.runningTime ,trailer:values.trailer};
     
     fetch(`https://61988db0164fa60017c230f1.mockapi.io/movies/${selectedMovie.id}`,{
       method : "PUT",
@@ -95,73 +100,87 @@ function UpdatedMovie({selectedMovie}){
 
     <TextField
       id="name"
+      name="name"
       value={values.name}
       onChange={handleChange}
       label="Movie name"
       variant="outlined"
       onBlur={handleBlur}
       style={new_style} 
+      error={errors.name && touched.name}
       helperText = {errors.name && touched.name ? errors.name : ""}/>
     
     <TextField
       id="pic"
+      name="pic"
       value={values.pic}
       onChange={handleChange}
       onBlur={handleBlur}
       label="Movie poster url"
       style={new_style} 
+      error={errors.pic && touched.pic}
       helperText = {errors.pic && touched.pic ? errors.pic : ""}/>
     
     <TextField
       id="rating"
+      name="rating"
       value={values.rating}
       onChange={handleChange}
       onBlur={handleBlur}
       label="Movie rating"
       style={new_style} 
+      error={errors.rating && touched.rating }
       helperText = {errors.rating && touched.rating ? errors.rating : ""}/>
 
 
     <TextField
       id="genre"
+      name="genre"
       value={values.genre}
       onChange={handleChange}
       onBlur={handleBlur}
       label="Movie genre"
       style={new_style} 
+      error = {errors.genre && touched.genre}
       helperText = {errors.genre && touched.genre ? errors.genre : ""}/>
     
     <TextField
       id="runningTime"
+      name="runningTime"
       value={values.runningTime}
       onChange={handleChange}
       onBlur={handleBlur}
       label="Movie running time"
       style={new_style} 
+      error={errors.runningTime && touched.runningTime}
       helperText = {errors.runningTime && touched.runningTime ? errors.runningTime : ""}/>
     
     <TextField
       id="trailer"
+      name="trailer"
       value={values.trailer}
       onChange={handleChange}
       onBlur={handleBlur}
       label="Movie trailer"
       placeholder="Enter the embeded code"
       style={new_style} 
+      error={errors.trailer && touched.trailer}
       helperText = {errors.trailer && touched.trailer ? errors.trailer :""}/>
     
     <TextField
       id="summary"
+      name="summary"
       value={values.summary}
       onChange={handleChange}
       onBlur={handleBlur}
       label="Movie Summary"
       style={new_style} 
+      error={errors.summary && touched.summary}
       helperText = {errors.summary && touched.summary ? errors.summary : ""}/>
 
 
     {/* Using button from Material  */}
-    <Button variant="contained" onClick={editMovie} style={new_style} className="formButton">Save Movie</Button>
+    <Button variant="contained" type="submit" style={new_style} className="formButton" color="success">Save Movie</Button>
 
   </div>
 </form>
