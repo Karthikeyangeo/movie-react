@@ -106,10 +106,6 @@ ul li{
   text-align: center;
 }
 
- .MuiFormHelperText-root {
-  color: rgba(255,0,0) !important;
-}
-
 .guvi-logo{
   height: 100px;
   width: 100px; 
@@ -120,3 +116,7 @@ ul li{
   flex-direction: column;
   align-items: center;
 }
+/* Header Text color change -- Optional  */
+ /* .MuiFormHelperText-root {
+  color: rgba(255,0,0) !important;
+} */
