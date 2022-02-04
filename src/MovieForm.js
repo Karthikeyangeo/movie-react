@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import {useFormik} from  "formik";
 import * as yup from 'yup';
+import {API} from './global'
 
 const formValidationSchema = yup.object({
   name: yup.string().required("Mandatory Field"),
@@ -43,7 +44,7 @@ export function MovieForm() {
     // const newMovie = { name : values.name, pic:values.pic, summary:values.summary, rating:values.rating, genre:values.genre, runningTime:values.runningTime ,trailer:values.trailer};
    
 
-    fetch(`https://61988db0164fa60017c230f1.mockapi.io/movies`,{
+    fetch(`${API}/movies`,{
       method : "POST",
       body : JSON.stringify(newMovie),
       headers :{'content-type':'application/json'}

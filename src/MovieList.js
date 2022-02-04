@@ -5,6 +5,7 @@ import { Button ,IconButton} from '@mui/material';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import {API} from './global'
 
 
 function MovieList() {
@@ -14,7 +15,7 @@ function MovieList() {
    
   // function to display the movies from API
   const getMovies =()=> {
-    fetch(`https://61988db0164fa60017c230f1.mockapi.io/movies`,{
+    fetch(`${API}/movies`,{
       method : "GET",
     })  //returns a promise object
     .then((data) => data.json())
@@ -27,7 +28,7 @@ function MovieList() {
 
   // to remove the movie when delete button is clicked
   const removeMovie =(id)=>{
-    fetch(`https://61988db0164fa60017c230f1.mockapi.io/movies/${id}`,{
+    fetch(`${API}/movies/${id}`,{
       method : "Delete",
     }).then(()=> getMovies());
 
@@ -78,7 +79,7 @@ function MovieDetails(){
 
   const [new_movie,setNewMovie] = useState({});
   useEffect(()=> {
-    fetch(`https://61988db0164fa60017c230f1.mockapi.io/movies/${id}`,{
+    fetch(`${API}/movies/${id}`,{
       method : "GET",
     })  //returns a promise object
     .then((data) => data.json())
