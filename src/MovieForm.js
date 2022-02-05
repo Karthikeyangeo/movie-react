@@ -46,7 +46,7 @@ export function MovieForm() {
 
     fetch(`${API}/movies`,{
       method : "POST",
-      body : JSON.stringify(newMovie),
+      body : JSON.stringify([newMovie]),
       headers :{'content-type':'application/json'}
     })  //returns a promise object
       .then(()=>history.push("/MovieList"))
