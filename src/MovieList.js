@@ -45,7 +45,7 @@ function MovieList() {
 
   return (
     <section className="movie-details">
-      {movie_data.map(({ name, pic, genre, summary, runningTime, rating,trailer,id},index) => (
+      {movie_data.map(({ name, pic, genre, summary, runningTime, rating,trailer,id,_id},index) => (
         <Movie
           pic={pic}
           name={name}
@@ -53,14 +53,14 @@ function MovieList() {
           summary={summary}
           runningTime={runningTime}
           rating={rating} 
-          id={id}
+          id={_id}
           trailer={trailer}
           deletebutton ={
-            <IconButton   color="error" onClick={()=>removeMovie(id)}>
+            <IconButton   color="error" onClick={()=>removeMovie(_id)}>
               < DeleteIcon  />
             </IconButton>}
           editbutton = {
-            <IconButton onClick={()=> history.push(`/movies/edit/${id}`)}>
+            <IconButton onClick={()=> history.push(`/movies/edit/${_id}`)}>
             <EditIcon  />
           </IconButton>}
           />
