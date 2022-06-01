@@ -20,13 +20,14 @@ import { Switch, Route } from "react-router-dom";
 import { NotFound } from './NotFound';
 import { MovieForm } from './MovieForm';
 import { BasicForm } from './BasicForm';
+import { Homepage } from './Homepage';
 
 
 
 
 export default function App() {
  
-    const[ appMode,setAppMode ] = useState("dark");
+    const[ appMode,setAppMode ] = useState("light");
     const history = useHistory();
     const theme = createTheme({
           palette: {
@@ -72,7 +73,7 @@ export default function App() {
           >
             Movies
           </IconButton>
-          <IconButton
+          {/* <IconButton
             variant="text"
             size="small"
             color="inherit"
@@ -92,7 +93,7 @@ export default function App() {
             onClick = {()=> history.push('/basic-form')}
           >
             Basic Form
-          </IconButton>
+          </IconButton> */}
           <IconButton
             variant="text"
             size="small"
@@ -134,9 +135,11 @@ export default function App() {
         </Route>
         
         <Route exact path ="/">
-          <div className="home-page-content">
+          {/* <div className="home-page-content">
             <h1>Welcome to the movie App</h1> 
-          </div>
+            
+          </div> */}
+          <Homepage />
         </Route>
 
         <Route path="**">

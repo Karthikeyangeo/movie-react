@@ -2,6 +2,9 @@
   font-family: 'Poppins',sans-serif;
   
 }
+html{
+  height: 100%;
+}
 .moviepic {
   height: 500px;
   width: 370px;
@@ -78,8 +81,13 @@ ul li{
   justify-content: space-between;
 }
 .home-page-content{
-  margin-top: 20vh;
-  margin-left: 35%;
+  /* margin-top: 10vh; */
+  /* margin-left: 15%; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
 }
 
 .movie-detail-container{
@@ -116,7 +124,15 @@ ul li{
   flex-direction: column;
   align-items: center;
 }
-/* Header Text color change -- Optional  */
- /* .MuiFormHelperText-root {
-  color: rgba(255,0,0) !important;
-} */
+
+.notFound{
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+}
+
+.homepageLogo{
+  width: 600px;
+  height: 500px;
+  object-fit: cover;
+}
