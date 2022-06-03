@@ -142,7 +142,7 @@ export default function App() {
           <Homepage />
         </Route>
 
-        <Route path="**">
+        <Route path="*">
           <NotFound />
         </Route>
 
